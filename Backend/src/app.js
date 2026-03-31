@@ -1,8 +1,10 @@
 // server create and config
 const express = require("express");
 const noteModel = require("./models/note.model");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // POST Notes
@@ -47,8 +49,8 @@ app.patch("/api/notes/:id", async (req, res) => {
   const { description } = req.body;
   await noteModel.findByIdAndUpdate(id, { description });
   res.status(200).json({
-    message:"Note updated successfully"
-  })
+    message: "Note updated successfully",
+  });
 });
 
 module.exports = app;
