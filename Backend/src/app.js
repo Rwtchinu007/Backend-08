@@ -2,10 +2,14 @@
 const express = require("express");
 const noteModel = require("./models/note.model");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+// http://localhost:3000/assets/index-B0onbTEb.js
+// http://localhost:3000/assets/index-BictVQ64.css
+app.use(express.static("./public"));
 
 // POST Notes
 // create new note and save data in MongoDB
@@ -51,6 +55,12 @@ app.patch("/api/notes/:id", async (req, res) => {
   res.status(200).json({
     message: "Note updated successfully",
   });
+});
+
+console.log(__dirname);
+app.use("*name", (req, res) => {
+  // res.sendFile("D:\\Coding-X\\Cohort 2.0\\Backend\\Day8\\Backend\\public\\index.html"); this method is very fragile and not preferred so we use path module
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
 
 module.exports = app;

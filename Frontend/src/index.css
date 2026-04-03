@@ -1,9 +1,12 @@
-/* Boilerplate CSS */
-* {
+/* ── Reset ── */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
 body,
 #root {
@@ -11,22 +14,226 @@ body,
   width: 100%;
 }
 
+/* ── Base ── */
 html {
-  background-color: rgb(53, 53, 53);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #0f0c0c;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #e8e8e8;
+  font-size: 16px;
 }
 
-.note{
-  background-color: black;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  color: white;
-  max-width: 20rem;
+#root {
+  padding: 2rem;
 }
 
-.notes{
+/* ── Create Note Panel ── */
+.create-note {
+  background: #1c1c1c;
+  border: 1px solid #2e2e2e;
+  border-radius: 14px;
+  padding: 1.75rem 2rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.create-note h1 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #c8c8c8;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Create Form ── */
+.note-create-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.note-create-form input {
+  flex: 1 1 180px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: #262626;
+  color: #e8e8e8;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.note-create-form input::placeholder {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.note-create-form input:focus {
+  border-color: #7c6fff;
+  background: #2c2b3a;
+}
+
+.note-create-form button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  border: none;
+  background: #7c6fff;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.note-create-form button:hover {
+  background: #6657e8;
+}
+
+.note-create-form button:active {
+  transform: scale(0.97);
+}
+
+/* ── Notes Grid ── */
+.notes {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  padding-block: 1rem;
-  padding-inline: 3rem;
+  padding-inline: 1rem;
+  justify-content: flex-start;
+}
+
+/* ── Note Card ── */
+.note {
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  min-width: 200px;
+  max-width: 280px;
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.2s;
+}
+
+.note:hover {
+  border-color: #3a3a3a;
+}
+
+.note h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.note p {
+  font-size: 0.875rem;
+  color: #888;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* ── Edit Section ── */
+.edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit-section input {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #7c6fff;
+  border-radius: 8px;
+  background: #2c2b3a;
+  color: #e8e8e8;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.edit-section input::placeholder {
+  color: #555;
+}
+
+.edit-section > div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* Save */
+.edit-section button:first-of-type {
+  flex: 1;
+  padding: 0.45rem 0;
+  background: #7c6fff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-section button:first-of-type:hover {
+  background: #6657e8;
+}
+
+/* Cancel */
+.edit-section button:last-of-type {
+  flex: 1;
+  padding: 0.45rem 0;
+  background: transparent;
+  color: #666;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.edit-section button:last-of-type:hover {
+  border-color: #555;
+  color: #999;
+}
+
+/* ── Note Action Buttons ── */
+.note > button {
+  width: 100%;
+  padding: 0.45rem 0;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Edit Description */
+.note > button:first-of-type {
+  background: transparent;
+  color: #7c6fff;
+  border: 1px solid #3a3560;
+}
+
+.note > button:first-of-type:hover {
+  background: #2c2b3a;
+  border-color: #7c6fff;
+}
+
+/* Delete */
+.note > button:last-of-type {
+  background: transparent;
+  color: #c0392b;
+  border: 1px solid #3a1f1f;
+}
+
+.note > button:last-of-type:hover {
+  background: #2a1515;
+  border-color: #c0392b;
 }
