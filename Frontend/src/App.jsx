@@ -8,13 +8,13 @@ const App = () => {
   const [newDescription, setNewDescription] = useState("");
 
   function fetchNotes() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("https://backend-04.onrender.com/api/notes").then((res) => {
       setNotes(res.data.notes);
     });
   }
 
   function handleDeleteNote(noteId) {
-    axios.delete("http://localhost:3000/api/notes/" + noteId).then((res) => {
+    axios.delete("https://backend-04.onrender.com/api/notes/" + noteId).then((res) => {
       console.log(res.data);
       fetchNotes();
     });
@@ -24,7 +24,7 @@ const App = () => {
     e.preventDefault();
     const { title, description } = e.target.elements;
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("https://backend-04.onrender.com/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -37,7 +37,7 @@ const App = () => {
 
   function handleUpdateDescription(noteId) {
     axios
-      .patch("http://localhost:3000/api/notes/" + noteId, {
+      .patch("https://backend-04.onrender.com/api/notes/" + noteId, {
         description: newDescription,
       })
       .then((res) => {
